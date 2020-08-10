@@ -6,6 +6,8 @@
 // @include      https://www.novelupdates.com/series-ranking/*
 // @include      https://www.novelupdates.com/stag/*
 // @include      https://www.novelupdates.com/series-finder/*
+// @include      https://www.novelupdates.com/latest-series/*
+// @include      https://www.novelupdates.com/viewlist/*
 // @version      1.0.0
 // @description  Filters the result by country
 // @run-at       document-end
@@ -52,7 +54,13 @@ function toggleFilter(this: HTMLInputElement) {
   GM_setValue(this.name, ok)
 }
 
-const injectLoc = document.querySelector('.search_sort') || document.querySelector('#rankfilter')
+const injectLoc =
+  // Series Listing and Series Ranking
+  document.querySelector('.search_sort') ||
+  // Series Finder and Latest Series
+  document.querySelector('#rankfilter') ||
+  // Rec Lists
+  document.querySelector('.ucl_main')
 
 const filterArea = document.createElement('div')
 

@@ -1,20 +1,26 @@
 // ==UserScript==
 // @name         Novel Updates Filter Result by Country
+// @namespace    https://github.com/TigorLazuardi/novel-updates-filter
 // @include      https://www.novelupdates.com/genre/*
 // @include      https://www.novelupdates.com/novelslisting/*
 // @include      https://www.novelupdates.com/series-ranking/*
 // @include      https://www.novelupdates.com/stag/*
 // @include      https://www.novelupdates.com/series-finder/*
+// @include      https://www.novelupdates.com/latest-series/*
+// @include      https://www.novelupdates.com/viewlist/*
 // @version      1.0.0
 // @description  Filters the result by country
 // @run-at       document-end
 // @inject-in    to content
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @license      MIT
+// @license      MIT (https://github.com/TigorLazuardi/novel-updates-filter/blob/master/LICENSE)
+// @downloadURL  https://raw.githubusercontent.com/TigorLazuardi/novel-updates-filter/master/dist/userscript.js
+// @homepageURL  https://github.com/TigorLazuardi/novel-updates-filter
+// @supportURL   https://github.com/TigorLazuardi/novel-updates-filter
 // ==/UserScript==
 // This script is written in typescript and thus ugly to read if read directly like this.
-// Please refer to git page (homepage url) for the actual source code
+// Please refer to git page (the name space above) for the actual source code
 var _a;
 var origins = {
     Korea: 'orgkr',
@@ -44,7 +50,13 @@ function toggleFilter() {
     }
     GM_setValue(this.name, ok);
 }
-var injectLoc = document.querySelector('.search_sort') || document.querySelector('#rankfilter');
+var injectLoc = 
+// Series Listing and Series Ranking
+document.querySelector('.search_sort') ||
+    // Series Finder and Latest Series
+    document.querySelector('#rankfilter') ||
+    // Rec Lists
+    document.querySelector('.ucl_main');
 var filterArea = document.createElement('div');
 var filterLabel = document.createElement('p');
 filterLabel.innerHTML = '<b>Blocklist :</b>';
