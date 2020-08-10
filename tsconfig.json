@@ -1,0 +1,13 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "lib": ["DOM", "ES5"],
+    "target": "ES3",
+    "strict": true,
+    "sourceMap": true,
+    "pretty": true,
+    "removeComments": false,
+    "module": "CommonJS",
+    "outDir": "dist"
+  }
+}
