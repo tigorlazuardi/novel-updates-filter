@@ -8,3 +8,7 @@ This is a simple script to filter result by countries. All countries you have ch
 $ npm install -g typescript # If you don't have typescript
 $ tsc
 ```
+
+# Preview
+
+![Preview](./images/preview.png)
