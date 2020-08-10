@@ -12,7 +12,10 @@
 // @inject-in    to content
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @license      MIT
+// @license      MIT (https://github.com/TigorLazuardi/novel-updates-filter/blob/master/LICENSE)
+// @downloadURL  https://raw.githubusercontent.com/TigorLazuardi/novel-updates-filter/master/dist/userscript.js
+// @homepageURL  https://github.com/TigorLazuardi/novel-updates-filter
+// @supportURL   https://github.com/TigorLazuardi/novel-updates-filter
 // ==/UserScript==
 // This script is written in typescript and thus ugly to read if read directly like this.
 // Please refer to git page (the name space above) for the actual source code
