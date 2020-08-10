@@ -8,7 +8,7 @@
 // @include      https://www.novelupdates.com/series-finder/*
 // @include      https://www.novelupdates.com/latest-series/*
 // @include      https://www.novelupdates.com/viewlist/*
-// @version      1.0.0
+// @version      1.0.1
 // @description  Filters the result by country
 // @run-at       document-end
 // @inject-into  content
