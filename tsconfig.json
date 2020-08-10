@@ -1,13 +1,18 @@
 {
-  "include": ["src"],
+  "include": ["src/**/*", "src/*.d.ts"],
   "compilerOptions": {
     "lib": ["DOM", "ES5"],
-    "target": "ES3",
-    "strict": true,
-    "sourceMap": true,
+    "target": "ES5",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noUnusedLocals": true,
+    "sourceMap": false,
     "pretty": true,
     "removeComments": false,
     "module": "CommonJS",
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "src"
   }
 }
