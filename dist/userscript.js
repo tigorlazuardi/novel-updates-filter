@@ -14,7 +14,7 @@
 // @inject-in    to content
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @license      MIT (https://github.com/TigorLazuardi/novel-updates-filter/blob/master/LICENSE)
+// @license      MIT
 // @downloadURL  https://raw.githubusercontent.com/TigorLazuardi/novel-updates-filter/master/dist/userscript.js
 // @homepageURL  https://github.com/TigorLazuardi/novel-updates-filter
 // @supportURL   https://github.com/TigorLazuardi/novel-updates-filter
