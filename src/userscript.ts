@@ -11,7 +11,7 @@
 // @version      1.0.0
 // @description  Filters the result by country
 // @run-at       document-end
-// @inject-in    to content
+// @inject-into  content
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @license      MIT
