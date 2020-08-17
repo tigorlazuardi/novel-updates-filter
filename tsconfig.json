@@ -14,5 +14,6 @@
     "module": "CommonJS",
     "outDir": "dist",
     "baseUrl": "src"
-  }
+  },
+  "compileOnSave": true
 }
