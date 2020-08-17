@@ -9,7 +9,7 @@
 // @include      https://www.novelupdates.com/latest-series/*
 // @include      https://www.novelupdates.com/viewlist/*
 // @match        https://www.novelupdates.com/
-// @version      1.0.1
+// @version      1.1.0
 // @description  Filters the result by country
 // @run-at       document-end
 // @inject-into  content
