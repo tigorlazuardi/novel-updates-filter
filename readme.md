@@ -12,3 +12,7 @@ $ tsc
 # Preview
 
 ![Preview](./images/preview.png)
+
+# Home
+
+![Home](./images/home.png)
