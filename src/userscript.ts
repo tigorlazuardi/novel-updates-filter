@@ -8,6 +8,7 @@
 // @include      https://www.novelupdates.com/series-finder/*
 // @include      https://www.novelupdates.com/latest-series/*
 // @include      https://www.novelupdates.com/viewlist/*
+// @match        https://www.novelupdates.com/
 // @version      1.0.1
 // @description  Filters the result by country
 // @run-at       document-end
@@ -36,45 +37,52 @@ const origins: { [key: string]: string } = {
   Vietnam: 'orgvn',
 }
 
-function setStatus(selector: string, status: 'none' | 'block') {
+const home = document.querySelectorAll('.l-content table#myTable')[1]
+
+const injectLoc =
+  // home
+  home ??
+  // Series Listing and Series Ranking
+  document.querySelector('.search_sort') ??
+  // Series Finder and Latest Series
+  document.querySelector('#rankfilter') ??
+  // Rec Lists
+  document.querySelector('.ucl_main')
+
+function setDisplay(selector: string, display: 'none' | 'block') {
   const el = document.querySelectorAll(`.${selector}`)
-  el.forEach((e) => {
-    // @ts-ignore
-    e.parentElement?.parentElement?.parentElement?.style.display = status
-  })
+  el.forEach((e) =>
+    home
+      ? (e.parentElement.parentElement.style.display = display)
+      : (e.parentElement.parentElement.parentElement.style.display = display),
+  )
 }
 
 function toggleFilter(this: HTMLInputElement) {
-  const ok = this.checked
-  if (ok) {
-    setStatus(this.value, 'none')
+  const hide = this.checked
+  if (hide) {
+    setDisplay(this.value, 'none')
   } else {
-    setStatus(this.value, 'block')
+    setDisplay(this.value, 'block')
   }
-  GM_setValue(this.name, ok)
+  GM_setValue(this.name, hide)
 }
-
-const injectLoc =
-  // Series Listing and Series Ranking
-  document.querySelector('.search_sort') ||
-  // Series Finder and Latest Series
-  document.querySelector('#rankfilter') ||
-  // Rec Lists
-  document.querySelector('.ucl_main')
 
 const filterArea = document.createElement('div')
 
 const filterLabel = document.createElement('p')
+// Styling Blocklist text
 filterLabel.innerHTML = '<b>Blocklist :</b>'
 filterLabel.style.marginBottom = '0'
 
 const selections = document.createElement('div')
+// Making sure the chexboxes wrap well on small resolution screens
 selections.style.display = 'flex'
 selections.style.flexWrap = 'wrap'
 
 for (const k in origins) {
   const status = GM_getValue<boolean>(k, false)
-  const container = document.createElement('div')
+  const items = document.createElement('div')
   const checkbox = document.createElement('input')
   const label = document.createElement('label')
   checkbox.setAttribute('type', 'checkbox')
@@ -82,24 +90,26 @@ for (const k in origins) {
   checkbox.value = origins[k]
   checkbox.addEventListener('click', toggleFilter)
   checkbox.checked = status
+  checkbox.style.position = 'static'
 
   if (status) {
-    setStatus(origins[k], 'none')
+    setDisplay(origins[k], 'none')
   }
 
   label.setAttribute('for', k)
   label.innerText = k
 
-  container.appendChild(checkbox)
-  container.appendChild(label)
-  container.style.display = 'flex'
-  container.style.flexWrap = 'wrap'
-  container.style.marginRight = '10px'
-  container.style.alignItems = 'center'
-  container.style.justifyContent = 'center'
-  container.style.minWidth = '50px'
+  // Making sure checkbox is inline with label
+  items.appendChild(checkbox)
+  items.appendChild(label)
+  items.style.display = 'flex'
+  items.style.flexWrap = 'wrap'
+  items.style.marginRight = '10px'
+  items.style.alignItems = 'center'
+  items.style.justifyContent = 'center'
+  items.style.minWidth = '50px'
 
-  selections.appendChild(container)
+  selections.appendChild(items)
 }
 
 filterArea.appendChild(filterLabel)
@@ -114,4 +124,6 @@ filterArea.style.border = '2px solid #B8CB99'
 filterArea.style.paddingLeft = '10px'
 filterArea.style.paddingRight = '10px'
 
-injectLoc?.parentNode?.insertBefore(filterArea, injectLoc.nextSibling)
+home
+  ? injectLoc?.parentNode?.insertBefore(filterArea, injectLoc)
+  : injectLoc?.parentNode?.insertBefore(filterArea, injectLoc.nextSibling)
